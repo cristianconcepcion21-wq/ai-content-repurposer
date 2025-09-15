@@ -31,8 +31,9 @@ def get_transcript(youtube_url):
     if not video_id or len(video_id) != 11:
         return "❌ Error: Could not extract valid YouTube video ID."
     try:
-        transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
-        return " ".join([t['text'] for t in transcript])
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
+        transcript = " ".join([t['text'] for t in transcript_list])
+        return transcript
     except Exception as e:
         return f"❌ Error fetching transcript: {e}"
 
